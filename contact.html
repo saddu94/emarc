@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | EMARC INTERNATIONAL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal: #09738a;
+            --orange: #f59220;
+            --white: #ffffff;
+            --bg-light: #f8f9fa;
+            --text-dark: #2b3542;
+            --text-muted: #6a737d;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; color: var(--text-dark); line-height: 1.6; background-color: var(--white); }
+        h1, h2, h3, h4 { line-height: 1.2; font-weight: 700; color: var(--teal); }
+        p { color: var(--text-muted); margin-bottom: 15px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        header {
+            background-color: var(--white); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000;
+        }
+        .logo-container {
+            position: relative;
+            width: 64px;
+            height: 68px;
+            overflow: hidden;
+            flex: 0 0 auto;
+            transition: var(--transition);
+        }
+        .logo-container:hover { transform: scale(1.03); }
+        .logo-mark-image {
+            display: block;
+            position: absolute;
+            width: 166.4%;
+            max-width: none;
+            height: auto;
+            left: -32.8%;
+            top: -28.6%;
+        }
+        
+        nav ul { display: flex; gap: 30px; }
+        nav a { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); position: relative; }
+        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--orange); transition: var(--transition); }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        nav a:hover, nav a.active { color: var(--orange); }
+
+        .btn {
+            display: inline-block; padding: 12px 30px; border-radius: 4px; font-weight: 600;
+            font-size: 0.95rem; cursor: pointer; transition: var(--transition); border: none;
+        }
+        .btn-orange { background-color: var(--orange); color: var(--white); }
+        .btn-orange:hover { background-color: #d97714; transform: translateY(-2px); }
+
+        section { padding: 80px 5%; }
+        .section-header { text-align: center; max-width: 750px; margin: 0 auto 50px; }
+        .section-header h2 { font-size: 2.2rem; margin-bottom: 15px; }
+
+        .page-banner {
+            background: linear-gradient(135deg, var(--teal) 0%, #0c5460 100%);
+            color: var(--white); padding: 80px 5%; text-align: center; margin-top: 70px;
+        }
+        .page-banner h1 { color: var(--white); font-size: 2.8rem; margin-bottom: 15px; }
+        .page-banner h1 span { color: var(--orange); }
+        .page-banner p { font-size: 1.2rem; color: rgba(255,255,255,0.8); max-width: 700px; margin: 0 auto; }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px; margin-bottom: 60px;
+        }
+        .contact-card {
+            background-color: var(--white); border-radius: 10px; overflow: hidden;
+            box-shadow: var(--shadow); transition: var(--transition); border-top: 5px solid var(--teal);
+        }
+        .contact-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .contact-card-header { background-color: var(--bg-light); padding: 25px 30px; display: flex; align-items: center; gap: 15px; }
+        .contact-card-header .icon { font-size: 2rem; color: var(--orange); display: flex; align-items: center; justify-content: center; flex: 0 0 2rem; }
+        .contact-card-header .icon svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+        .contact-card-header h3 { margin: 0; font-size: 1.4rem; color: var(--teal); }
+        .contact-card-body { padding: 30px; }
+        .contact-card-body p { margin-bottom: 12px; font-size: 1rem; color: var(--text-dark); }
+        .contact-card-body .highlight { font-weight: 700; color: var(--teal); font-size: 1.1rem; display: block; margin-bottom: 15px; }
+        .contact-card-body .address-text { font-style: italic; line-height: 1.8; }
+
+        .contact-form-section {
+            background-color: var(--bg-light); padding: 60px 5%; border-radius: 10px; margin-top: 50px;
+        }
+        .contact-form-section h2 { text-align: center; margin-bottom: 30px; font-size: 2rem; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--teal); }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 12px 15px; border: 1px solid #ccc; border-radius: 5px;
+            font-family: 'Poppins', sans-serif; font-size: 1rem; transition: var(--transition);
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--orange); box-shadow: 0 0 0 2px rgba(245, 146, 32, 0.2);
+        }
+        .form-group textarea { min-height: 150px; resize: vertical; }
+        .form-submit { text-align: center; margin-top: 20px; }
+
+        footer {
+            background-color: var(--teal); color: var(--white);
+            padding: 70px 5% 30px; margin-top: 80px;
+        }
+        .footer-content {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 50px;
+        }
+        .footer-col h3 { color: var(--orange); font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px; display: inline-block; }
+        .footer-col h3::after { content: ''; position: absolute; width: 50%; height: 2px; background-color: var(--orange); bottom: 0; left: 0; }
+        .footer-col p, .footer-col a { color: rgba(255, 255, 255, 0.8); font-size: 0.95rem; margin-bottom: 12px; display: block; text-decoration: none; }
+        .footer-col a:hover { color: var(--orange); }
+        .footer-bottom { text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 30px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img class="logo-mark-image" src="emarc-logo.png" alt="EMARC International logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-banner">
+        <h1>Get In <span>Touch</span></h1>
+        <p>Reach out to us to discuss partnership opportunities, project inquiries, or procurement needs. Our team is ready to assist you.</p>
+    </section>
+
+    <section>
+        <div class="section-header">
+            <h2>Our Official Offices</h2>
+            <p>Find our regional and cooperative office addresses in Kerala, India. We are here to serve your business needs.</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-card">
+                <div class="contact-card-header">
+                    <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><ellipse cx="12" cy="22.6" rx="4.7" ry=".9" fill="#09738a" opacity=".16" stroke="none"/><path d="M12 22s-8.5-6.2-8.5-12a8.5 8.5 0 1 1 17 0c0 5.8-8.5 12-8.5 12Z" fill="#09738a" stroke="#075a6d" stroke-width=".8"/><path d="M12 18s-5.4-4.1-5.4-8a5.4 5.4 0 1 1 10.8 0c0 3.9-5.4 8-5.4 8Z" fill="#21a7ae" stroke="none"/><path d="M7.6 6.4a6.1 6.1 0 0 1 4.5-2" fill="none" stroke="#d4f1ef" stroke-width=".9" opacity=".9"/><circle cx="12" cy="10" r="2.7" fill="#f59220" stroke="#fff" stroke-width="1.1"/></svg></div>
+                    <h3>Cooperative Office</h3>
+                </div>
+                <div class="contact-card-body">
+                    <span class="highlight">EMARC INTERNATIONAL PRIVATE LIMITED</span>
+                    <p class="address-text">
+                        SAMBA BUILDING, TC 99/2041/2, CHITHIRA NAGAR, KULATHUR, KAZHAKKOOTTAM, THIRUVANANTHAPURAM, KERALA, INDIA, 695583
+                    </p>
+                    <p><strong>CIN:</strong> U52292KL2025PTC092152</p>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-card-header">
+                    <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><ellipse cx="12" cy="22.6" rx="4.7" ry=".9" fill="#09738a" opacity=".16" stroke="none"/><path d="M12 22s-8.5-6.2-8.5-12a8.5 8.5 0 1 1 17 0c0 5.8-8.5 12-8.5 12Z" fill="#09738a" stroke="#075a6d" stroke-width=".8"/><path d="M12 18s-5.4-4.1-5.4-8a5.4 5.4 0 1 1 10.8 0c0 3.9-5.4 8-5.4 8Z" fill="#21a7ae" stroke="none"/><path d="M7.6 6.4a6.1 6.1 0 0 1 4.5-2" fill="none" stroke="#d4f1ef" stroke-width=".9" opacity=".9"/><circle cx="12" cy="10" r="2.7" fill="#f59220" stroke="#fff" stroke-width="1.1"/></svg></div>
+                    <h3>Regional Office</h3>
+                </div>
+                <div class="contact-card-body">
+                    <span class="highlight">EMARC INTERNATIONAL PRIVATE LIMITED</span>
+                    <p class="address-text">
+                        SM PLAZA, 2ND FLOOR,<br>
+                        PETTAH JUNCTION,<br>
+                        TRIVANDRUM,<br>
+                        KERALA 695024, INDIA
+                    </p>
+                    <p style="margin-top: 15px; font-weight: 600; color: var(--teal);">Primary Hub for Regional Operations & Real Estate Coordination.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-form-section">
+        <h2>Send Us a Message</h2>
+        <form onsubmit="event.preventDefault(); alert('Thank you for your inquiry! Our team will contact you shortly.');">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="Inquiry about Import/Export, Construction, etc.">
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+            </div>
+            <div class="form-submit">
+                <a href="#" class="btn btn-orange" style="padding: 15px 50px; font-size: 1.05rem;">Send Message</a>
+            </div>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>EMARC INTERNATIONAL</h3>
+                <p>Think Bigger, Grow Better. We are a dynamic group specializing in international trade, procurement, construction, and real estate development.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Our Offices</h3>
+                <p><strong>Cooperative Office:</strong><br>
+                SAMBA BUILDING, TC 99/2041/2, CHITHIRA NAGAR, KULATHUR, KAZHAKKOOTTAM, THIRUVANANTHAPURAM, KERALA, INDIA, 695583</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 EMARC INTERNATIONAL PRIVATE LIMITED. All Rights Reserved. CIN: U52292KL2025PTC092152
+        </div>
+    </footer>
+
+</body>
+</html>

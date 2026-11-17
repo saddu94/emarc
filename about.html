@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | EMARC INTERNATIONAL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal: #09738a;
+            --orange: #f59220;
+            --white: #ffffff;
+            --bg-light: #f8f9fa;
+            --text-dark: #2b3542;
+            --text-muted: #6a737d;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; color: var(--text-dark); line-height: 1.6; background-color: var(--white); }
+        h1, h2, h3, h4 { line-height: 1.2; font-weight: 700; color: var(--teal); }
+        p { color: var(--text-muted); margin-bottom: 15px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        header {
+            background-color: var(--white); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000;
+        }
+        .logo-container {
+            position: relative;
+            width: 64px;
+            height: 68px;
+            overflow: hidden;
+            flex: 0 0 auto;
+            transition: var(--transition);
+        }
+        .logo-container:hover { transform: scale(1.03); }
+        .logo-mark-image {
+            display: block;
+            position: absolute;
+            width: 166.4%;
+            max-width: none;
+            height: auto;
+            left: -32.8%;
+            top: -28.6%;
+        }
+        
+        nav ul { display: flex; gap: 30px; }
+        nav a { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); position: relative; }
+        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--orange); transition: var(--transition); }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        nav a:hover, nav a.active { color: var(--orange); }
+
+        .page-banner {
+            background: linear-gradient(135deg, var(--teal) 0%, #0c5460 100%);
+            color: var(--white); padding: 60px 5%; text-align: center; margin-top: 70px;
+        }
+        .page-banner h1 { color: var(--white); font-size: 2.8rem; margin-bottom: 15px; }
+        .page-banner h1 span { color: var(--orange); }
+        .page-banner p { font-size: 1.2rem; color: rgba(255,255,255,0.8); max-width: 700px; margin: 0 auto; }
+
+        section { padding: 80px 5%; }
+        .section-header { text-align: center; max-width: 750px; margin: 0 auto 50px; }
+        .section-header h2 { font-size: 2.2rem; margin-bottom: 15px; }
+
+        .intro-section {
+            background-color: var(--bg-light); padding: 60px 5%; border-radius: 8px; margin-bottom: 60px;
+        }
+        .intro-section h2 {
+            font-size: 1.8rem; margin-bottom: 20px; color: var(--teal);
+            border-left: 5px solid var(--orange); padding-left: 15px;
+        }
+        .intro-section p { font-size: 1.1rem; margin-bottom: 15px; }
+
+        .objectives-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .objective-card {
+            background-color: var(--white); padding: 30px; border-radius: 8px;
+            box-shadow: var(--shadow); border-top: 4px solid var(--orange);
+            transition: var(--transition); display: flex; flex-direction: column;
+        }
+        .objective-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .obj-num { font-size: 2rem; font-weight: 800; color: var(--teal); opacity: 0.15; line-height: 1; margin-bottom: 15px; }
+        .objective-card h3 { font-size: 1.2rem; margin-bottom: 15px; color: var(--teal); }
+        .objective-card p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0; }
+
+        footer {
+            background-color: var(--teal); color: var(--white);
+            padding: 70px 5% 30px; margin-top: 80px;
+        }
+        .footer-content {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 50px;
+        }
+        .footer-col h3 { color: var(--orange); font-size: 1.3rem; margin-bottom: 20px; position: relative; padding-bottom: 10px; display: inline-block; }
+        .footer-col h3::after { content: ''; position: absolute; width: 50%; height: 2px; background-color: var(--orange); bottom: 0; left: 0; }
+        .footer-col p, .footer-col a { color: rgba(255, 255, 255, 0.8); font-size: 0.95rem; margin-bottom: 12px; display: block; text-decoration: none; }
+        .footer-col a:hover { color: var(--orange); }
+        .footer-bottom { text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 30px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img class="logo-mark-image" src="emarc-logo.png" alt="EMARC International logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-banner">
+        <h1>About <span>EMARC INTERNATIONAL</span></h1>
+        <p>Building global connections, constructing modern landscapes, and delivering procurement excellence with a vision to grow bigger and better.</p>
+    </section>
+
+    <section class="intro-section">
+        <div class="section-header" style="text-align:left; max-width:none;">
+            <h2 style="border-left: none; padding-left: 0; margin-bottom: 25px; font-size: 2rem;">Who We Are</h2>
+            <p style="font-size: 1.1rem; max-width: 900px;">
+                EMARC INTERNATIONAL PRIVATE LIMITED is a diversified business group headquartered in Thiruvananthapuram, Kerala, India. We support businesses through international trade, procurement, construction, real estate development, and related operational services.
+            </p>
+            <p style="font-size: 1.1rem; max-width: 900px;">
+                Our team of experienced professionals brings more than 10 years of industry expertise across strategic resourcing, supply chain management, logistics, construction, real estate, and business operations. Together, these capabilities form an integrated business network that provides coordinated support for a wide range of projects and business needs.
+            </p>
+            <p style="font-size: 1.1rem; max-width: 900px;">
+                Guided by our philosophy, <strong>“Think Bigger, Grow Better,”</strong> we focus on reliable, efficient, and tailored solutions that help businesses grow. Our registered CIN is <strong>U52292KL2025PTC092152</strong>, reflecting our commitment to corporate excellence, transparency, and long-term value creation.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header">
+            <h2>Our Core Objectives</h2>
+            <p>Our corporate goals are structured to drive progress, facilitate seamless trade, and build robust infrastructures for a sustainable future.</p>
+        </div>
+        <div class="objectives-container">
+            <div class="objective-card">
+                <div class="obj-num">01</div>
+                <h3>International Trade & Exchange</h3>
+                <p>To engage in international trade by importing and exporting a wide range of goods and products. This includes sourcing high-quality materials and commodities from global markets and supplying them to domestic and international clients.</p>
+            </div>
+            <div class="objective-card">
+                <div class="obj-num">02</div>
+                <h3>Comprehensive Trading Operations</h3>
+                <p>To carry on business of buy, sell, import, export, preserve, job work, transport or deal as wholesaler, retailer, agent, principle, stockist, of all kinds of goods, raw material, semifinished goods, articles, agricultural products, machinery, equipment, handicrafts, capital goods, chemicals, electronic goods.</p>
+            </div>
+            <div class="objective-card">
+                <div class="obj-num">03</div>
+                <h3>Import-Export House & Agent</h3>
+                <p>To act as an import-export house or agent and to conduct all functions connected with obtaining, dealing in licenses, certificates, and other rights necessary for seamless cross-border business operations.</p>
+            </div>
+            <div class="objective-card">
+                <div class="obj-num">04</div>
+                <h3>Consultancy & Licensing Services</h3>
+                <p>To provide services consultancy, advisory, and licensing services related to import-export, trade laws, and business operations to any individual, company, firm, local authority, or government authority, research centres inside or outside India.</p>
+            </div>
+            <div class="objective-card">
+                <div class="obj-num">05</div>
+                <h3>Foreign Collaboration & Representation</h3>
+                <p>To provide assistance, consultancy to any body corporate, individual, or government authority related to foreign collaborations, project formulations, and to act as agent or representative of such domestic/foreign companies for that purpose.</p>
+            </div>
+            <div class="objective-card">
+                <div class="obj-num">06</div>
+                <h3>End-to-End Construction Solutions</h3>
+                <p>To provide end-to-end construction solutions, including project planning, design, execution, and management for residential, commercial, and industrial infrastructure projects, ensuring superior quality and timely delivery.</p>
+            </div>
+            <div class="objective-card">
+                <div class="obj-num">07</div>
+                <h3>Real Estate Development & Management</h3>
+                <p>To engage in real estate activities such as property development, sales, leasing, and management. This includes acquiring, developing, and managing residential, commercial, and industrial properties to high industry standards.</p>
+            </div>
+            <div class="objective-card">
+                <div class="obj-num">08</div>
+                <h3>Procurement & Sourcing Excellence</h3>
+                <p>To offer procurement and sourcing services for businesses, ensuring the acquisition of quality materials, equipment, and products at competitive prices. Focused on building a reliable and efficient supply chain for clients.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>EMARC INTERNATIONAL</h3>
+                <p>Think Bigger, Grow Better. We are a dynamic group specializing in international trade, procurement, construction, and real estate development.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Our Offices</h3>
+                <p><strong>Cooperative Office:</strong><br>
+                SAMBA BUILDING, TC 99/2041/2, CHITHIRA NAGAR, KULATHUR, KAZHAKKOOTTAM, THIRUVANANTHAPURAM, KERALA, INDIA, 695583</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 EMARC INTERNATIONAL PRIVATE LIMITED. All Rights Reserved. CIN: U52292KL2025PTC092152
+        </div>
+    </footer>
+
+</body>
+</html>

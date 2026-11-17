@@ -1,0 +1,457 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMARC INTERNATIONAL | Think Bigger, Grow Better</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal: #09738a;
+            --orange: #f59220;
+            --white: #ffffff;
+            --bg-light: #f8f9fa;
+            --text-dark: #2b3542;
+            --text-muted: #6a737d;
+            --shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4 { line-height: 1.2; font-weight: 700; color: var(--teal); }
+        p { color: var(--text-muted); margin-bottom: 15px; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-container {
+            position: relative;
+            width: 64px;
+            height: 68px;
+            overflow: hidden;
+            flex: 0 0 auto;
+            transition: var(--transition);
+        }
+        .logo-container:hover { transform: scale(1.03); }
+        .logo-mark-image {
+            display: block;
+            position: absolute;
+            width: 166.4%;
+            max-width: none;
+            height: auto;
+            left: -32.8%;
+            top: -28.6%;
+        }
+        nav ul { display: flex; gap: 35px; }
+        nav a { font-weight: 600; font-size: 1rem; color: var(--text-dark); position: relative; }
+        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -6px; left: 0; background-color: var(--orange); transition: var(--transition); }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        nav a:hover, nav a.active { color: var(--orange); }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 32px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+        .btn-orange { background-color: var(--orange); color: var(--white); box-shadow: 0 4px 15px rgba(245, 146, 32, 0.3); }
+        .btn-orange:hover { background-color: #d97714; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(245, 146, 32, 0.4); }
+        .btn-teal-outline { background-color: transparent; border: 2px solid var(--teal); color: var(--teal); }
+        .btn-teal-outline:hover { background-color: var(--teal); color: var(--white); }
+
+        /* Hero Sliding Banner Section (100% Image Transparency) */
+        .hero {
+            position: relative;
+            height: 90vh;
+            min-height: 600px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            overflow: hidden;
+        }
+
+        /* Slider Background Container */
+        .hero-bg-slider {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0;
+            transition: opacity 2.5s ease-in-out, transform 3s ease-in-out;
+            transform: scale(1.1);
+        }
+        .slide img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 1; /* Fully opaque images */
+        }
+
+        /* Sequential sliding animation keyframes */
+        @keyframes slideSequence {
+            0% { opacity: 0; transform: scale(1.1); }
+            10% { opacity: 1; transform: scale(1); }
+            35% { opacity: 1; transform: scale(1); }
+            45% { opacity: 0; transform: scale(1.1); }
+            100% { opacity: 0; }
+        }
+
+        .slide-1 { animation: slideSequence 15s infinite; animation-delay: 0s; }
+        .slide-2 { animation: slideSequence 15s infinite; animation-delay: 2.5s; }
+        .slide-3 { animation: slideSequence 15s infinite; animation-delay: 5s; }
+        .slide-4 { animation: slideSequence 15s infinite; animation-delay: 7.5s; }
+        .slide-5 { animation: slideSequence 15s infinite; animation-delay: 10s; }
+        .slide-6 { animation: slideSequence 15s infinite; animation-delay: 12.5s; }
+
+        /* 100% Transparent overlay (No color filter/tint) */
+        .hero-bg-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: transparent; /* Pure visual clarity, zero tint */
+            z-index: 2;
+        }
+        
+
+        /* Solid white card container to guarantee text contrast over bright images */
+        .hero-content {
+            position: relative;
+            z-index: 4;
+            max-width: 700px;
+            color: var(--text-dark);
+            padding: 45px;
+            background: rgba(255, 255, 255, 0.95); /* Opaque solid white card */
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-content h1 {
+            font-size: 3.2rem;
+            color: var(--teal);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        .hero-content h1 span { color: var(--orange); }
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            max-width: 100%;
+        }
+        .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+        .hero-buttons .btn { color: var(--white); }
+        .hero-buttons .btn-orange { background-color: var(--orange); }
+        .hero-buttons .btn-teal-outline { border-color: var(--teal); color: var(--teal); }
+        .hero-buttons .btn-teal-outline:hover { background-color: var(--teal); }
+
+        section { padding: 90px 5%; }
+        .section-header { text-align: center; max-width: 750px; margin: 0 auto 60px; }
+        .section-header h2 { font-size: 2.3rem; margin-bottom: 18px; color: var(--teal); }
+        .section-header p { font-size: 1.1rem; }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+        .card-media {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: var(--bg-light);
+        }
+        .card-media img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.45s ease;
+        }
+        .card:hover .card-media img { transform: scale(1.04); }
+        .card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 5px solid var(--orange);
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover { transform: translateY(-12px); box-shadow: 0 18px 40px rgba(0,0,0,0.1); }
+        .card-body { padding: 35px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-icon {
+            width: 70px; height: 70px; background-color: var(--bg-light); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 22px; color: var(--teal); font-size: 1.8rem;
+        }
+        .card-icon svg { width: 48px; height: 48px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+        .card h3 { font-size: 1.4rem; margin-bottom: 15px; color: var(--teal); }
+        .card p { margin-bottom: 25px; flex-grow: 1; }
+        .card-link { font-weight: 600; color: var(--orange); display: inline-flex; align-items: center; gap: 8px; transition: var(--transition); }
+        .card-link:hover { gap: 12px; }
+
+        .highlights {
+            background: linear-gradient(135deg, var(--teal) 0%, #0c5460 100%);
+            color: var(--white);
+            padding: 90px 5%;
+            margin-top: 80px;
+        }
+        .section-header h2 { color: var(--white); }
+        .section-header p { color: rgba(255,255,255,0.8); }
+        
+        /* Stats Grid Container */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        /* Individual Stat Item Box - Perfect Centering */
+        .stat-item {
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 180px; /* Stable height for visual symmetry */
+        }
+        .stat-item:hover { 
+            background: rgba(255, 255, 255, 0.12); 
+            transform: scale(1.03); 
+        }
+        
+        /* Orange Titles - Centered */
+        .stat-item h3 {
+            font-size: 2.4rem;
+            color: var(--orange);
+            margin-bottom: 12px;
+            line-height: 1.1;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        /* White Subtitles - Centered */
+        .stat-item p {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin: 0;
+            text-align: center;
+            line-height: 1.4;
+        }
+        
+        /* Specific style for the requested text */
+        .stat-item.special h3 { 
+            font-size: 1.8rem; 
+            color: var(--orange); 
+            margin-bottom: 5px; 
+        }
+        .stat-item.special p { 
+            font-size: 1.1rem; 
+            color: var(--white); 
+            font-weight: 700; 
+            margin-top: 5px; 
+        }
+
+        footer {
+            background-color: var(--teal); color: var(--white);
+            padding: 80px 5% 30px; margin-top: 80px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px; margin-bottom: 60px;
+        }
+        .footer-col h3 { color: var(--orange); font-size: 1.4rem; margin-bottom: 25px; position: relative; padding-bottom: 12px; display: inline-block; }
+        .footer-col h3::after { content: ''; position: absolute; width: 50%; height: 2px; background-color: var(--orange); bottom: 0; left: 0; }
+        .footer-col p, .footer-col a { color: rgba(255, 255, 255, 0.8); font-size: 1rem; margin-bottom: 15px; display: block; text-decoration: none; transition: var(--transition); }
+        .footer-col a:hover { color: var(--orange); padding-left: 5px; }
+        .footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); }
+
+        @media (max-width: 900px) {
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero { height: auto; padding: 60px 5%; }
+            .hero-content { background: var(--white); padding: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img class="logo-mark-image" src="emarc-logo.png" alt="EMARC International logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <!-- Six service-focused hero banner slides -->
+        <div class="hero-bg-slider">
+            <div class="slide slide-1"><img src="hero-import-export-ship-v2.jpg" alt="Container ship at an international cargo port" fetchpriority="high"></div>
+            <div class="slide slide-2"><img src="hero-procurement-warehouse-user.jpg" alt="Palletized supplies and a forklift in a distribution warehouse"></div>
+            <div class="slide slide-3"><img src="hero-construction-v2.jpg" alt="Bridge construction across a river valley"></div>
+            <div class="slide slide-4"><img src="hero-real-estate-v2.jpg" alt="New residential neighborhood at sunset"></div>
+            <div class="slide slide-5"><img src="hero-import-export-terminal-v2.jpg" alt="Illuminated container terminal and cargo ship at dusk"></div>
+            <div class="slide slide-6"><img src="hero-procurement-sourcing-v2.jpg" alt="Procurement team planning global sourcing"></div>
+        </div>
+        <!-- Fully Transparent Overlay (Zero Color Filter) -->
+        <div class="hero-bg-overlay"></div>
+        
+        <div class="hero-content">
+            <h1>Think Bigger,<br>Grow Better with <span>EMARC</span> INTERNATIONAL</h1>
+            <p>Engaging in international trade, premium construction, real estate development, and strategic procurement. We build bridges to international markets and construct foundations for a prosperous future.</p>
+            <div class="hero-buttons">
+                <a href="services.html" class="btn btn-orange">Our Services</a>
+                <a href="contact.html" class="btn btn-teal-outline">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header">
+            <h2>Our Core Business Verticals</h2>
+            <p>At EMARC INTERNATIONAL, we operate across diverse sectors to deliver comprehensive solutions tailored to the global market's evolving demands.</p>
+        </div>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-media"><img src="service-import-export-v3.jpg" alt="Cargo ship, containers, and cranes at an international port" loading="lazy" decoding="async"></div>
+                <div class="card-body">
+                    <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><defs><linearGradient id="cargoTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#48b8bb"/><stop offset="1" stop-color="#09738a"/></linearGradient><linearGradient id="cargoSide" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1593a2"/><stop offset="1" stop-color="#075a6d"/></linearGradient></defs><ellipse cx="24" cy="41" rx="17" ry="2.4" fill="#09738a" opacity=".16" stroke="none"/><path d="M8 17 18 11 40 18 30 24Z" fill="url(#cargoTop)" stroke="#075a6d" stroke-width="1.3"/><path d="M8 17 30 24 30 39 8 32Z" fill="#1593a2" stroke="#075a6d" stroke-width="1.3"/><path d="M30 24 40 18 40 33 30 39Z" fill="url(#cargoSide)" stroke="#075a6d" stroke-width="1.3"/><path d="m12 19 0 12m4-11 0 13m4-12 0 13m4-12 0 13m4-12 0 13" fill="none" stroke="#b9edf0" stroke-width="1" opacity=".8"/><path d="m33 23 0 13m3-15 0 13m2-14 0 13" fill="none" stroke="#b9edf0" stroke-width=".8" opacity=".7"/><path d="M8 18v4m0 7v3m22-9v4m0 9v3" fill="none" stroke="#f59220" stroke-width="2.4" stroke-linecap="round"/><path d="M5 34h3m22 5h10" fill="none" stroke="#075a6d" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+                    <h3>Import & Export</h3>
+                    <p>Engaging in international trade by importing and exporting a wide range of high-quality goods, materials, and commodities to global markets.</p>
+                    <a href="services.html" class="card-link">Explore Sector →</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-media"><img src="service-procurement-v2.jpg" alt="Professionals assessing timber and supplies in a warehouse" loading="lazy" decoding="async"></div>
+                <div class="card-body">
+                    <div class="card-icon">🛒</div>
+                    <h3>Procurement & Sourcing</h3>
+                    <p>Ensuring the acquisition of quality materials, equipment, and products at competitive prices, building a reliable and efficient supply chain.</p>
+                    <a href="services.html" class="card-link">Explore Sector →</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-media"><img src="service-construction-v3.jpg" alt="Workers completing interior construction in a commercial building" loading="lazy" decoding="async"></div>
+                <div class="card-body">
+                    <div class="card-icon">🏗️</div>
+                    <h3>Construction Services</h3>
+                    <p>Providing end-to-end construction solutions, including project planning, design, execution, and management for industrial and commercial infrastructures.</p>
+                    <a href="services.html" class="card-link">Explore Sector →</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-media"><img src="service-real-estate-v3.jpg" alt="Architect and developer reviewing a residential project model" loading="lazy" decoding="async"></div>
+                <div class="card-body">
+                    <div class="card-icon">🏢</div>
+                    <h3>Real Estate Development</h3>
+                    <p>Property development, sales, leasing, and management of premium residential, commercial, and industrial properties.</p>
+                    <a href="services.html" class="card-link">Explore Sector →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="highlights">
+        <div class="section-header">
+            <h2>EMARC At A Glance</h2>
+            <p>Our commitment to excellence is measured by our milestones, global reach, and the trust we build with our partners.</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Commitment to Quality</p>
+            </div>
+            <div class="stat-item special">
+                <h3>End-to-End</h3>
+                <p>Solution Provider</p>
+            </div>
+            <div class="stat-item">
+                <h3>Global</h3>
+                <p>Supply Chain Network</p>
+            </div>
+            <div class="stat-item">
+                <h3>Trust</h3>
+                <p>Based Partnerships</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>EMARC INTERNATIONAL</h3>
+                <p>Think Bigger, Grow Better. We are a dynamic group specializing in international trade, procurement, construction, and real estate development.</p>
+                <div class="social-links" style="display:flex; gap:15px; margin-top:15px;">
+                    <a href="#" style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; transition:var(--transition);">f</a>
+                    <a href="#" style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; transition:var(--transition);">in</a>
+                    <a href="#" style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; transition:var(--transition);">X</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Our Offices</h3>
+                <p><strong>Cooperative Office:</strong><br>
+                SAMBA BUILDING, TC 99/2041/2, CHITHIRA NAGAR, KULATHUR, KAZHAKKOOTTAM, THIRUVANANTHAPURAM, KERALA, INDIA, 695583</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 EMARC INTERNATIONAL PRIVATE LIMITED. All Rights Reserved. CIN: U52292KL2025PTC092152
+        </div>
+    </footer>
+
+</body>
+</html>
